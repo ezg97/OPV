@@ -1,0 +1,17 @@
+#header {
+    font-family: 'Tangerine', cursive; 
+    font-size: 60px;
+    text-align: center;
+    margin:0;
+    background-color: F5F5ED;
+}
+
+#header a {
+    text-decoration: none;
+    color: var(--button);
+}
+
+#header a:hover, 
+#header a:focus {
+    color: var(--hover);
+}

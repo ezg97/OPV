@@ -1,0 +1,88 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    padding: 15px;
+    margin-top: 50px;
+
+    background-color: var(--secondary_color);
+        /* possibly change */
+
+    color: black;
+    width: 100%;
+    height: 100%;
+
+}
+
+footer > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+form > label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+input {
+    padding: 5px;
+}
+
+input[type=submit] {
+    background: var(--button);
+    color: var(--light_background);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    cursor: pointer;
+    border: 1px solid var(--button);
+}
+
+form > div {
+    font-size: 15px;
+
+}
+
+form > div > input[type=email] {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid black;
+}
+
+input[type=submit]:hover, input[type=submit]:focus {
+    background-color: var(--hover);
+}
+
+    /* ----------
+            COMPUTER SCREEN REGULAR 
+    ----------------------*/
+    @media screen and (min-width: 768px) {
+     
+        
+    }
+    
+    @media screen and (min-width: 1024px) {
+        footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        
+            padding: 15px;
+            margin-top: 50px;
+        
+            background-color: var(--secondary_color);
+                /* possibly change */
+
+            color: black;
+            width: 100%;
+            height: 100%;
+        
+        }
+        
+    }

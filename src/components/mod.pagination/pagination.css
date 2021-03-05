@@ -1,0 +1,87 @@
+/* Div for pagination bar */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: grey;
+
+    height: 25px;
+    border-top:1px solid grey;
+    padding-top: 45px;
+}
+
+/* inner div */
+.pagination div {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* div containing select */
+.pagination div:first-child {
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+.pagination div:last-child {
+    margin-left: 10px;
+    margin-right: 0px;
+}
+
+.pagination > div > label {
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+.pagination > div > select {
+    border: 1px solid grey;
+    cursor: pointer;
+    padding: 2px;
+    text-align: center;
+    color: var(--button);
+    height: 100%;
+}
+
+/* div containing buttons for page control */
+.pagination > div > button {
+    color: var(--button);
+    background-color: var(--light_background);
+    border: 1px solid grey;
+    border-radius: 0px;
+    font-weight: bold;
+
+    height: 100%;
+    margin: 0px;
+    margin-left:2px;
+    margin-right:2px;
+    /* margin-bottom: 2px; */
+}
+.pagination > div > button:first-child {
+    margin-right: 5px;
+}
+.pagination > div > button:last-child {
+    margin-left: 5px;
+}
+
+.pagination > div > button:hover, .pagination > div > button:focus {
+    background-color: var(--hover);
+    color: var(--light_background);
+}
+
+/* div for page search */
+.pagination > div > input[type=text] {
+    border: 1px solid grey;
+    padding: 3px;
+    color: grey;
+    width: 40px;
+}
+
+.pagination > div > input[type=submit] {
+    margin:0px;
+    padding: 0px;
+    padding: 3px;
+    border-radius: 0px;
+    margin-left: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+}

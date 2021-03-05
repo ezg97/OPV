@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+* { 
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    letter-spacing: 0.03em;
+}
+
+:root {
+    /* --hover: #00833f; */
+    --hover: #CC8B8C;
+    --button: #738CAF;
+    --light_background: white;
+    --secondary_color: #E5E5E5;
+    --maxWidth: 1200px;
+}
+
+#logo {
+    height: auto;
+    width: 40px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+
+#root {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.App {
+    height: 100%;
+    width: 100%;
+    background-color: var(--light_background);
+    
+}
+
+
+
