@@ -17,6 +17,7 @@ function Footer(props) {
             </form>
             <Media_Links />
             <Toggle />
+            <a>sign in</a>
 
         </footer>
           );

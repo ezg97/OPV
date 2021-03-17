@@ -12,7 +12,7 @@ function Post_Listing(props) {
             'paragraph': "Every website faces two key questions: 1. What content do we have at hand? 2. What content should we produce? Answering those questions is the Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
         },
         {   'id': 2,
-            'title': 'Content Title',
+            'title': 'Dinosaurs never died and are Living Under Your House',
             'date': 'DECEMBER 16, 2020',
             'paragraph': `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut venenatis tellus in metus vulputate eu scelerisque felis imperdiet. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Sit amet purus gravida quis blandit turpis cursus. Cursus metus aliquam eleifend mi in. Non sodales neque sodales ut etiam sit amet nisl. Iaculis urna id volutpat lacus laoreet non curabitur gravida. Nulla pellentesque dignissim enim sit amet venenatis urna. Etiam sit amet nisl purus in. Euismod quis viverra nibh cras pulvinar mattis nunc. Tincidunt id aliquet risus feugiat in.
 
@@ -46,7 +46,7 @@ function Post_Listing(props) {
             Faucibus nisl tincidunt eget nullam. Pellentesque sit amet porttitor eget dolor morbi non arcu risus. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque viverra. Diam maecenas ultricies mi eget mauris pharetra. Arcu vitae elementum curabitur vitae nunc sed. At lectus urna duis convallis convallis tellus id interdum. Morbi enim nunc faucibus a pellentesque sit amet porttitor. Tincidunt ornare massa eget egestas purus. Amet dictum sit amet justo donec enim diam. A pellentesque sit amet porttitor eget. Aliquet risus feugiat in ante metus dictum at tempor commodo. Nunc id cursus metus aliquam eleifend mi in nulla. Volutpat odio facilisis mauris sit amet massa vitae tortor condimentum. Non odio euismod lacinia at. Pulvinar mattis nunc sed blandit libero volutpat sed cras ornare. At tempor commodo ullamcorper a lacus.`
         },
         {   'id': 4,
-            'title': 'Content Title',
+            'title': 'HOW Many Chars can',
             'date': 'DECEMBER 16, 2020',
             'paragraph': `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim praesent elementum facilisis leo. Et malesuada fames ac turpis egestas. Faucibus nisl tincidunt eget nullam non nisi est sit. Parturient montes nascetur ridiculus mus mauris vitae ultricies. Mi sit amet mauris commodo quis imperdiet massa. Egestas dui id ornare arcu odio. In nibh mauris cursus mattis molestie a iaculis at erat. Sagittis aliquam malesuada bibendum arcu vitae elementum curabitur. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo nulla. Dignissim convallis aenean et tortor at risus viverra. Id diam vel quam elementum pulvinar etiam. Id ornare arcu odio ut sem nulla pharetra diam sit.
 
@@ -73,7 +73,7 @@ function Post_Listing(props) {
             'paragraph': "Every website faces two key questions: 1. What content do we have at hand? 2. What content should we produce? Answering those questions is the Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
         },
         {   'id': 7,
-            'title': 'Content Title',
+            'title': 'New disease HYPOCONDRIAC-TIC-Sliide enters hospital',
             'date': 'DECEMBER 16, 2020',
             'paragraph': `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet nisl suscipit adipiscing bibendum est. Id porta nibh venenatis cras sed. Nam libero justo laoreet sit amet cursus sit amet. Vitae justo eget magna fermentum iaculis eu. Feugiat in ante metus dictum at tempor commodo ullamcorper a. Risus nullam eget felis eget nunc lobortis mattis. Et ultrices neque ornare aenean euismod elementum nisi quis eleifend. Aliquam sem fringilla ut morbi. Eget egestas purus viverra accumsan. Mauris augue neque gravida in. Consectetur adipiscing elit ut aliquam purus sit. Diam ut venenatis tellus in metus vulputate eu. Pellentesque nec nam aliquam sem et tortor consequat.
 
@@ -112,7 +112,7 @@ function Post_Listing(props) {
             Pharetra diam sit amet nisl suscipit. At lectus urna duis convallis convallis tellus. In dictum non consectetur a erat nam. Tincidunt id aliquet risus feugiat. Ante in nibh mauris cursus mattis molestie a iaculis. Leo duis ut diam quam. Eget gravida cum sociis natoque penatibus et. Eu lobortis elementum nibh tellus molestie nunc non blandit massa. Lectus mauris ultrices eros in. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. Nunc non blandit massa enim nec dui. Id cursus metus aliquam eleifend mi in nulla posuere. Bibendum at varius vel pharetra vel turpis nunc. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Lorem ipsum dolor sit amet consectetur adipiscing elit. Varius duis at consectetur lorem donec massa. Cursus turpis massa tincidunt dui ut ornare lectus sit amet.`
         },
         {   'id': 10,
-            'title': 'Content Title',
+            'title': 'Content Title have to test how long a title can be before it commits UI/UX atrocisites',
             'date': 'DECEMBER 16, 2020',
             'paragraph': "Every website faces two key questions: 1. What content do we have at hand? 2. What content should we produce? Answering those questions is the Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
         },
@@ -123,7 +123,7 @@ function Post_Listing(props) {
     return (
         <div className='page post_page'>
             {lists.map((article) => 
-                <View_Posts id={article.id} title={article.title} date={article.date} paragraph={(article.paragraph.substring(0, 150) + "...")} read={Math.ceil((article.paragraph.split(' ').length)/250)} />
+                <View_Posts id={article.id} title={article.title.length < 25 ? article.title.trimEnd() : (article.title.substring(0, 25).trimEnd() + '...')} date={article.date} paragraph={(article.paragraph.substring(0, 150) + "...")} read={Math.ceil((article.paragraph.split(' ').length)/250)} />
             )}
         </div>
 

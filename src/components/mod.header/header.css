@@ -3,10 +3,11 @@
     font-size: 60px;
     text-align: center;
     margin:0;
-    background-color: #F5F5ED;
+    padding-top: 10px;
+    /* background-color: #F5F5ED; */
 }
 
-#header a {
+a {
     text-decoration: none;
     color: var(--button);
 }
