@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './post.css';
+// import './post.css';
 
 function Post(props) {
 
@@ -10,6 +10,7 @@ function Post(props) {
 
     return (
         <div className='page'>
+            <h1>post.js included</h1>
             <h1>Fetch post then display here... #{props.match.params.post_id}</h1>
             
         </div>

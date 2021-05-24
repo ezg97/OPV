@@ -11,6 +11,11 @@ import Post from './components/mod.posts/mod.view_posts/users/post/post.js';
 import About from './components/mod.about/about.js';
 import Pagination from './components/mod.pagination/pagination.js';
 
+// admin
+import AdminPost from './components/mod.posts/mod.view_posts/admin/admin_post_listing/admin_post_listing.js';
+
+
+
 import Footer from './components/mod.footer/footer.js';
 
 // Importing Library Fragments
@@ -34,6 +39,7 @@ function App() {
         <Switch>
           <Route exact path={['/','/home']} component = {Home} />
           <Route exact path={['/posts','/post']} component = {Post_Listing} />
+          <Route exact path={['/admin_post']} component = {AdminPost} />
           <Route path={['/posts/:post_id','/post/post_id']} component = {Post} />
           <Route exact path={['/sales', '/sale']} component = {About} />
           <Route exact path={['/recipes','recipe']} component = {About} />
