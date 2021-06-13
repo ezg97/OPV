@@ -10,6 +10,7 @@ import Post_Listing from './components/mod.posts/mod.view_posts/users/post_listi
 import Post from './components/mod.posts/mod.view_posts/users/post/post.js';
 import About from './components/mod.about/about.js';
 import Pagination from './components/mod.pagination/pagination.js';
+import FetchPost from './components/FetchPost/FetchPost.js';
 
 // admin
 import AdminPost from './components/mod.posts/mod.view_posts/admin/admin_post_listing/admin_post_listing.js';
@@ -20,6 +21,7 @@ import Footer from './components/mod.footer/footer.js';
 
 // Importing Library Fragments
 import ScrollToTop from './components/lib/scroll_to_top.js';
+import UnderConstruction from './components/mod.under_construction/under_construction';
 
 // Importing CSS
 import './App.css';
@@ -28,32 +30,45 @@ import './App.css';
 function App() {
   return (
     <main className='App' id='app'>
+      <div>
           
-      {/* 1 - Header: Every Page */}
-      <Route path='/' component = {Header} />
-      <Route path='/' component = {Nav_Bar} />
+        {/* 1 - Header: Every Page */}
+        <Route path='/' component = {Header} />
+        <Route path='/' component = {Nav_Bar} />
 
-      {/* 2 - Body: pages below */}
-      <React.Fragment>
-        <ScrollToTop/>
-        <Switch>
-          <Route exact path={['/','/home']} component = {Home} />
-          <Route exact path={['/posts','/post']} component = {Post_Listing} />
-          <Route exact path={['/admin_post']} component = {AdminPost} />
-          <Route path={['/posts/:post_id','/post/post_id']} component = {Post} />
-          <Route exact path={['/sales', '/sale']} component = {About} />
-          <Route exact path={['/recipes','recipe']} component = {About} />
-          <Route exact path={['/kits','/kit']} component = {About} />
-          <Route exact path='/about' component = {About} />
-          <Route path='/' component = {Home} />
-        </Switch>
-      </React.Fragment>
+        {/* 2 - Body: pages below */}
+        <React.Fragment>
+          <ScrollToTop/>
+          <Switch>
+            <Route exact path={['/','/home']} component = {Home} />
+            {/* {(1 === 1)
+            ?
+              <>
+                <Route exact path = {['/posts','/post','/sales','/sale','/recipes','/recipe','/kits', '/kit', '/about']} component = {UnderConstruction} />
+              </>
+            :
+              <> */}
+            <Route exact path={['/posts','/post']} component = {Post_Listing} />
+            <Route exact path={['/admin_post']} component = {AdminPost} />
+            <Route path={['/posts/:post_id','/post/post_id']} component = {Post} />
+            {/* <Route exact path={['/sales', '/sale']} component = {About} /> */}
+            <Route path={['/fetch_post/:post_id','/fetch_post/post_id']} component = {FetchPost} />
+            {/* <Route exact path={['/recipes','recipe']} component = {About} />
+            <Route exact path={['/kits','/kit']} component = {About} />
+            <Route exact path='/about' component = {About} /> */}
+              {/* </>
+            } */}
+            <Route path='/' component = {Home} />
+          </Switch>
+        </React.Fragment>
 
-      {/* 2.5 - Pagination: specific pages */}
-      <Route exact path={['/posts','/post', '/sales', '/sale', '/recipes','recipe']} component = {Pagination}/>
+        {/* 2.5 - Pagination: specific pages */}
+        <Route exact path={['/posts','/post', '/sales', '/sale', '/recipes','recipe']} component = {Pagination}/>
+
+      </div>
+       {/* <Route path='/' component = {} /> */}
       {/* 3 - Footer: Every Page */}
       <Route path='/' component = {Footer} />
-
     </main>
   );
 }

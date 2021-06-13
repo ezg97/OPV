@@ -7,19 +7,23 @@ import Toggle from '../mod.toggle/toggle';
 
 function Footer(props) {
     return (
-        <footer>
-            <form>
-            <label htmlFor='email'>Newsletter & Giveaways</label>
-            <div>
-                <input type="email" name='email' placeholder='Enter your email'/>
-                <input type='submit' value='Subscribe'/>
-            </div>
-            </form>
-            <Media_Links />
-            <Toggle />
-            <a>sign in</a>
+        <>
+            <div class="spacer"></div>
+            
+            <footer>
+                <form>
+                <label htmlFor='email'>Newsletter & Giveaways</label>
+                <div>
+                    <input type="email" name='email' placeholder='Enter your email'/>
+                    <input type='submit' value='Subscribe'/>
+                </div>
+                </form>
+                <Media_Links />
+                <Toggle />
+                <a>sign in</a>
 
-        </footer>
+            </footer>
+        </>
           );
 }
 

@@ -1,11 +1,7 @@
 import React from 'react';
-import View_Posts from '../view_posts/view_posts.js';
 
-import post_listing from './post_listing.css';
+function FetchPost(props) {
 
-
-function Post_Listing(props) {
-    
     let lists = [
         {   'id': 1,
             'title': 'Young Living’s ultraconcentrated Thieves Automatic Dishwasher Powder ',
@@ -238,15 +234,15 @@ Some of our favorites are:
 ];
 
 
+    console.log('in the fetch post');
 
     return (
-        <div className='page post_page'>
-            {lists.map((article) => 
-                <View_Posts id={article.id} title={article.title.length < 25 ? article.title.trimEnd() : (article.title.substring(0, 25).trimEnd() + '...')} date={article.date} paragraph={(article.paragraph.substring(0, 150) + "...")} read={Math.ceil((article.paragraph.split(' ').length)/250)} />
-            )}
-        </div>
-
+        // lists[props.match.params.post_id - 1];
+        // {JSON.stringify({ val: "test1" })}
+        // <>test</>
+        "val"
+    
     );
 }
 
-export default Post_Listing;
+export default FetchPost;
