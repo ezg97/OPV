@@ -32,6 +32,10 @@
     margin-top: 10px;
 }
 
+.newest_post > h3 {
+    text-align: center;
+}
+
 .newest_post > p {
     text-align: left;
     max-width: 680px;

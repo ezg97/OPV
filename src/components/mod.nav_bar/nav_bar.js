@@ -8,7 +8,7 @@ function Nav_Bar(props) {
             <nav>
                 <ul className="nav-list">
                     <li> <Link to={"/"}>Home</Link> </li>
-                    <li> <a href={"https://www.youngliving.com/apps/enrollment/step/1"}>Buy</a> </li>
+                    <li> <a target="_blank" href={"https://www.youngliving.com/apps/enrollment/step/1"}>Buy</a> </li>
                     <li> <Link to={"/posts"}>Posts</Link> </li>
                     {/* <li> <Link to={"/sales"}>Sales</Link> </li>
                     <li> <Link to={"/recipes"}>Recipes</Link> </li>

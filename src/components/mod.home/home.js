@@ -25,7 +25,7 @@ function Home(props) {
         <div className='page'>
 
             <div className='newest_post'>
-                <h6>RECENT POST - June 3, 2021</h6>
+                <h6>June 3, 2021</h6>
                 <h3>Young Living’s ultraconcentrated Thieves Automatic Dishwasher Powder</h3>
                 <div></div>
                 <p>Young Living’s ultraconcentrated Thieves Automatic Dishwasher Powder is back in stock! But that’s not the only good news...</p>
