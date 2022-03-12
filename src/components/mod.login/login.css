@@ -1,0 +1,36 @@
+.sign_in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  background-color: grey;
+}
+
+.sign_in_form > div {
+    margin-bottom: 15px;
+}
+
+.sign_in_button {
+    background-color: var(--button);
+    color: white;
+    padding: 8px;
+}
+
+.sign_in_button:hover {
+    background-color: var(--hover);
+}
+
+.username {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.password {
+    border: 1px solid black;
+    border-radius: 5px;
+}

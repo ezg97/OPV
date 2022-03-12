@@ -26,8 +26,8 @@ nav {
 }
 
 .nav-list li > a {
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 10px;
+    padding-bottom: 11px;
 
     text-decoration: none;
     color: var(--text_main_color);
@@ -35,8 +35,8 @@ nav {
 }
 
 .nav-list li a:hover, .nav-list li a:focus {
-    border-top: 3px solid var(--hover);
-    border-bottom: 3px solid var(--hover);
+    border-top: 1px solid var(--hover);
+    border-bottom: 1px solid var(--hover);
 
     color: var(--hover);
 }

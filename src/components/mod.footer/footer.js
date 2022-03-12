@@ -1,5 +1,6 @@
 import React from 'react';
 import './footer.css';
+import { Link} from 'react-router-dom';
 
 import Media_Links from '../mod.media_links/media_links';
 import Toggle from '../mod.toggle/toggle';
@@ -20,8 +21,6 @@ function Footer(props) {
                 </form>
                 <Media_Links />
                 <Toggle />
-                <a>sign in</a>
-
             </footer>
         </>
           );
