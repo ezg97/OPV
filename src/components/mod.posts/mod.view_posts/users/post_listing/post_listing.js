@@ -242,7 +242,7 @@ Some of our favorites are:
     return (
         <div className='page post_page'>
             {lists.map((article) => 
-                <View_Posts id={article.id} title={article.title.length < 25 ? article.title.trimEnd() : (article.title.substring(0, 25).trimEnd() + '...')} date={article.date} paragraph={(article.paragraph.substring(0, 150) + "...")} read={Math.ceil((article.paragraph.split(' ').length)/250)} />
+                <View_Posts admin={props.admin} id={article.id} title={article.title.length < 25 ? article.title.trimEnd() : (article.title.substring(0, 25).trimEnd() + '...')} date={article.date} paragraph={(article.paragraph.substring(0, 150) + "...")} read={Math.ceil((article.paragraph.split(' ').length)/250)} />
             )}
         </div>
 

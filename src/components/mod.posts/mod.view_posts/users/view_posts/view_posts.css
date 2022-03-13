@@ -90,6 +90,35 @@
     font-size: 14px;
 }
 
+.bottom-content_admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.bottom-content_admin > .button_admin {
+    width: 48%;
+    border-radius: 0;
+
+
+}
+
+.delete {
+    background-color: firebrick;
+    /* background-color: #B22222; */
+}
+
+.delete:hover, .delete:focus {
+    /* background-color: #8B0000; */
+    /* background-color: rgb(110,0,0); */
+    /* background-color: firebrick; */
+    /* color: var(--hover); */
+
+
+}
+
     /* ----------
             COMPUTER SCREEN REGULAR 
     ----------------------*/

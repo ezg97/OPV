@@ -13,6 +13,13 @@ function View_Posts(props) {
         history.push(`/posts/`+props.id);        
     }
 
+    function buttonDelete () {
+
+        // Pop up modal, are you sure?
+
+        // Send fetch request to delete the article
+    }
+
     return (
         <div className="posts">
             <div className='top-content'>
@@ -23,8 +30,15 @@ function View_Posts(props) {
                 <span></span>
                 <p>{props.read} min read</p>
             </div>
-            <div className='bottom-content'>
-                <button className='button' type="button" onClick={(e) => buttonLoad()} data-id={props.id}>Read More</button>
+            <div className={(props.admin) ? 'bottom-content bottom-content_admin' : 'bottom-content'}>
+                {console.log(props)}
+                {(props.admin)
+                    ? <>
+                        <button className='button button_admin' type="button" onClick={(e) => buttonLoad()} data-id={props.id}>Edit</button>
+                        <button className='button button_admin delete' type="button" onClick={(e) => buttonDelete()} data-id={props.id}>Delete</button>
+                      </>
+                    : <button className='button' type="button" onClick={(e) => buttonLoad()} data-id={props.id}>Read More</button>
+                }
             </div>
         </div>
     );

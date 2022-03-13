@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import {Route, useHistory, useParams} from 'react-router-dom';
 
 
@@ -273,6 +273,19 @@ Some of our favorites are:
         },     
 ];
 
+    const [editTitle, setEditTitle] = useState(lists[Number(params.post_id) - 1].title);
+    const [editBody, setEditBody] = useState(lists[Number(params.post_id) - 1].paragraph);
+
+    const updateTitle = (e) => {
+        setEditTitle(e.target.value);
+
+    }
+
+    const updateBody = (e) => {
+        setEditBody(e.target.value);
+    }
+
+
     return (
         <div className='page'>
             <div className="back_div">
@@ -285,22 +298,54 @@ Some of our favorites are:
                 <div class="blog_header" >
                     <img class="blog_image" src={lists[Number(params.post_id) - 1].images} />
                 </div>
+                
+                {(props.admin)
+                    ? <>
+                        <h2 className="h2_admin">Title</h2>
+                        <textarea class="blog_title textarea_admin" value={editTitle} onChange={updateTitle}></textarea>
+                      </>
+                    : <h2 className="blog_title">
+                        {lists[Number(params.post_id) - 1].title}
+                      </h2>
+                }
+                
+                {(props.admin)
+                    ? <>
+                        <h2 className="h2_admin">Body</h2>
+                        <p class="blog_content">
+                            <textarea class="pretext textarea_admin textarea_lg" value={editBody} onChange={updateBody}></textarea>
+                            {lists[Number(params.post_id) - 1].links.length > 0
+                            ? lists[Number(params.post_id) - 1].links.map(url => 
+                                <a href={url}>{url}</a>
+                            )
+                            : null
+                            }
 
-                <h2 class="blog_title">
-                    {lists[Number(params.post_id) - 1].title}
-                </h2>
-                <p class="blog_content">
-                    <pre class="pretext">
-                        {lists[Number(params.post_id) - 1].paragraph}
-                    </pre>
-                    {lists[Number(params.post_id) - 1].links.length > 0
-                    ? lists[Number(params.post_id) - 1].links.map(url => 
-                        <a href={url}>{url}</a>
-                    )
+                        </p>
+                    
+                      </>
+                    : <p class="blog_content">
+                        <pre class="pretext">
+                            {lists[Number(params.post_id) - 1].paragraph}
+                        </pre>
+                        {lists[Number(params.post_id) - 1].links.length > 0
+                        ? lists[Number(params.post_id) - 1].links.map(url => 
+                            <a href={url}>{url}</a>
+                        )
+                        : null
+                        }
+                      </p>
+                }
+                
+                {(props.admin)
+                    ? <>
+                        <br></br>
+                        <button className="button md">Submit</button>
+                        <span className="space-pad-10"></span>
+                        <button className="button delete md">Delete</button>
+                      </>
                     : null
-                    }
-
-                </p>
+                }
 
             </div>
                        
