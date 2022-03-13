@@ -1,10 +1,13 @@
 import React from 'react';
-import {Route, useHistory} from 'react-router-dom';
+import {Route, useHistory, useParams} from 'react-router-dom';
 
 
 import './post.css';
 
 function Post(props) {
+
+    const params = useParams();
+    const history = useHistory();
 
     // fetch based off of 
     //  Type: post type (post, recipe, sales)
@@ -270,11 +273,8 @@ Some of our favorites are:
         },     
 ];
 
-    const history = useHistory();
-
     return (
         <div className='page'>
-
             <div className="back_div">
                 <span class="outer_circle" tabindex="0" onClick={() => history.push(`/posts`)}>
                     <div className="back_arrow">&lsaquo;</div>
@@ -283,18 +283,18 @@ Some of our favorites are:
             {/* <img src="https://img.icons8.com/ios/452/back--v1.png"/> */}
             <div class="blog_post">
                 <div class="blog_header" >
-                    <img class="blog_image" src={lists[Number(props.match.params.post_id) - 1].images} />
+                    <img class="blog_image" src={lists[Number(params.post_id) - 1].images} />
                 </div>
 
                 <h2 class="blog_title">
-                    {lists[Number(props.match.params.post_id) - 1].title}
+                    {lists[Number(params.post_id) - 1].title}
                 </h2>
                 <p class="blog_content">
                     <pre class="pretext">
-                        {lists[Number(props.match.params.post_id) - 1].paragraph}
+                        {lists[Number(params.post_id) - 1].paragraph}
                     </pre>
-                    {lists[Number(props.match.params.post_id) - 1].links.length > 0
-                    ? lists[Number(props.match.params.post_id) - 1].links.map(url => 
+                    {lists[Number(params.post_id) - 1].links.length > 0
+                    ? lists[Number(params.post_id) - 1].links.map(url => 
                         <a href={url}>{url}</a>
                     )
                     : null
