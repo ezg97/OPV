@@ -104,9 +104,10 @@ function App() {
                 />
 
                 {/* <Route exact path={['/sales', '/sale']} component = {About} /> */}
-                <Route path={['/fetch_post/:post_id','/fetch_post/post_id']}  component={FetchPost}/>
-                {/* render={(props) => <FetchPost admin={enableLogin}/>}
-                /> */}
+                <Route path={['/fetch_post/:post_id','/fetch_post/post_id']}  
+                // component={FetchPost}/>
+                 render={(props) => <FetchPost admin={enableLogin}/>}
+                />
                 {/* <Route exact path={['/recipes','recipe']} component = {About} />
                 <Route exact path={['/kits','/kit']} component = {About} />
                 <Route exact path='/about' component = {About} /> */}
