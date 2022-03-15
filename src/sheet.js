@@ -1,6 +1,7 @@
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 
-module.exports = class Sheet {
+/*module.exports = */
+class Sheet {
     constructor() {
         this.doc = new GoogleSpreadsheet('1g8I0BuIQagwueD8kyQDlmO8doRbVTMOkXAuudVW8FYc');
 
@@ -22,13 +23,4 @@ module.exports = class Sheet {
     }
 }
 
-
-// to test the methods work
-// (async function() {
-//     const sheet = new Sheet();
-//     await sheet.load();
-//     sheet.addRows([
-//         { title: 'Software Engineer', location: 'SF' },
-//         { title: 'Web Developer', location: 'ATX' },
-//     ]);
-// })()
+export default Sheet;
