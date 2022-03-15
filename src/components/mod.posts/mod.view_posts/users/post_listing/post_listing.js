@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import {Link, useHistory  } from 'react-router-dom';
+
 import View_Posts from '../view_posts/view_posts.js';
 
 import post_listing from './post_listing.css';
 
 
 function Post_Listing(props) {
-    
+
     let lists = [
         {   'id': 1,
             'title': 'Young Living’s ultraconcentrated Thieves Automatic Dishwasher Powder ',
@@ -236,14 +238,33 @@ Some of our favorites are:
 
         },     
 ];
+    const history = useHistory();
+    const viewPostRef = useRef();
 
+    const addRow = () => {
+    //     history.push(`/posts/0`)
+    // viewPostRef.current.addButtonAdmin();
+           // history.push('/posts/0');
+       // history push isn't woring for some reason here, quick fix is to force the add page to load
+       window.location.href = window.location.origin + '/posts/0';
+    }
 
 
     return (
         <div className='page post_page'>
-            {lists.map((article) => 
-                <View_Posts admin={props.admin} id={article.id} title={article.title.length < 25 ? article.title.trimEnd() : (article.title.substring(0, 25).trimEnd() + '...')} date={article.date} paragraph={(article.paragraph.substring(0, 150) + "...")} read={Math.ceil((article.paragraph.split(' ').length)/250)} />
-            )}
+            {(props.admin)
+                ? <div className="add_div">
+                    <button onClick={addRow} className="add_button_admin">Add</button>
+                  </div>
+                : null
+            }
+            {console.log("display rows", props)}
+            {props.rows 
+                ? props.rows.map((row, i) => 
+                    <View_Posts ref={viewPostRef} admin={props.admin} updateRows={props.updateRows} rows={props.rows} updateRows={props.updateRows} id={i+1} title={row.title.length < 25 ? row.title.trimEnd() : (row.title.substring(0, 25).trimEnd() + '...')} date={/*row.date*/'JANUARY, 1, 2022'} paragraph={(row.body.substring(0, 150) + "...")} read={Math.ceil((row.body.split(' ').length)/250)} />
+                  )
+                : null
+            }
         </div>
 
     );

@@ -5,4 +5,31 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
+
 }
+
+.add_div {
+    width: 100%;
+    text-align: center;
+}
+
+.add_button_admin {
+    font-size: 14px;
+    width: 40%;
+    /* padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px; */
+}
+
+/* ----------
+            COMPUTER SCREEN REGULAR 
+    ----------------------*/
+    @media screen and (min-width: 768px) {
+
+        .add_button_admin {  
+            width: 30%;
+        }
+
+        
+
+    }

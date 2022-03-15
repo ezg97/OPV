@@ -21,12 +21,15 @@ import AdminPost from './components/mod.posts/mod.view_posts/admin/admin_post_li
 
 import Footer from './components/mod.footer/footer.js';
 
+import Sheet from './sheet';
+
 // Importing Library Fragments
 import ScrollToTop from './components/lib/scroll_to_top.js';
 import UnderConstruction from './components/mod.under_construction/under_construction';
 
 // Importing CSS
 import './App.css';
+import { stringify } from "json5";
 
 
 // Function
@@ -34,8 +37,54 @@ function App() {
   pressed.start();
 
   const [secretCode] = useState(['a','i','m','r']);
-  const [enableLogin, setEnableLogin] = useState(false);
+  const [logoutAttempt, setLogoutAttempt] = useState(false);
+
+  const [enableLogin, setEnableLogin] = useState(localStorage.getItem('username') === 'oilsporvida_60');
   const [render, setRender] = useState(false);
+
+  const [initalRender, setinitialRender] = useState(false);
+  const [rows, updateRows] = useState('');
+  const sheet = new Sheet();
+
+
+  const getRows = () => {
+    console.log('get called');
+    sheet.load()
+      .then(test => {
+        console.log('test');
+        console.log(sheet)
+        return sheet.getRows()
+      }).then(results => {
+        console.log('returned again');
+        console.log('results: ', results);
+
+        console.log(results[0].sku);
+        console.log(results[0].post_id);
+        console.log(results[0].title);
+        console.log(results[0].body);
+        console.log(results[0].image);
+        if (!rows) {
+          updateRows(results);
+        }
+        // if (!initalRender) {
+        //   updateRows(results);
+        //   setinitialRender(true);
+        // }
+      });
+    // const results = await sheet.getRows();
+
+    // console.log(results[0].sku);
+    // console.log(results[0].post_id);
+    // console.log(results[0].title);
+    // console.log(results[0].body);
+    // console.log(results[0].image);
+  }
+
+  const addRow = (newRow) => {
+    if (newRow) {
+      sheet.addRows(newRow);
+    }
+  }
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -44,6 +93,7 @@ function App() {
         if (pressed.every('o', 'u', 't')) {
           console.log('out has been pressed');
           setEnableLogin(false);
+          setLogoutAttempt(true);
         }
       }
 
@@ -51,23 +101,40 @@ function App() {
       if (!enableLogin) {
         if (pressed.every(secretCode[0], secretCode[1], secretCode[2], secretCode[3])) {
           console.log('irma has been pressed');
-          setEnableLogin(true)
+          setEnableLogin(true);
+          setLogoutAttempt(false);
         }
       }
     }
     document.addEventListener('keydown', handleKeyDown);
+
+    getRows();
+
+
+    // Get all the rows on page load
+    // if (!initalRender) {
+    //   getRows();
+    //   setinitialRender(true);
+    // }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     }
   });
 
+  const post = () => {
+
+    return null;
+  }
+
+
+
 
   return (
     <main className='App' id='app'>
       <div>
             {console.log('app.js enableLogin -> ', enableLogin)}
-            <LogIn loggedIn={enableLogin} setRender={setRender} render={render}/>
+            <LogIn loggedIn={enableLogin} logoutAttempt={logoutAttempt} setRender={setRender} render={render}/>
 
             {/* 1 - Header: Every Page */}
             <Route path='/'
@@ -93,13 +160,13 @@ function App() {
                   <> */}
                 <Route exact path={['/posts','/post']} 
                 // component={PostListing}/>
-                  render={(props) => <PostListing admin={enableLogin}/>}
+                  render={(props) => <PostListing admin={enableLogin} rows={rows} updateRows={updateRows}/>}
                 />
                 
                 <Route exact path={['/admin_post']} component = {AdminPost} />
 
                 <Route path={['/posts/:post_id','/post/post_id']}
-                 render={(props) => <Post admin={enableLogin}/>}
+                 render={(props) => <Post admin={enableLogin} rows={rows} updateRows={updateRows} addRow={addRow}/>}
 
                 />
 
@@ -123,9 +190,9 @@ function App() {
             </React.Fragment>
 
             {/* 2.5 - Pagination: specific pages */}
-            <Route exact path={['/posts','/post', '/sales', '/sale', '/recipes','recipe']} 
+            {/* <Route exact path={['/posts','/post', '/sales', '/sale', '/recipes','recipe']} 
               render={(props) => <Pagination admin={enableLogin}/>}
-            />
+            /> */}
       </div>
        {/* <Route path='/' component = {} /> */}
       {/* 3 - Footer: Every Page */}

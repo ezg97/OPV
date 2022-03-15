@@ -1,5 +1,5 @@
 import {React } from 'react';
-import {Route, Link, Switch, useHistory  } from 'react-router-dom';
+import {Link, useHistory  } from 'react-router-dom';
 
 import './view_posts.css';
 
@@ -13,11 +13,24 @@ function View_Posts(props) {
         history.push(`/posts/`+props.id);        
     }
 
+    function addButtonAdmin() {
+        // history.push('/posts/0');
+       // history push isn't woring for some reason here, quick fix is to force the add page to load
+        window.location.href = window.location.origin + '/posts/0';
+    }
+
     function buttonDelete () {
 
         // Pop up modal, are you sure?
 
         // Send fetch request to delete the article
+    }
+
+    const deleteRow = () => {
+        props.rows[props.id-1].delete();
+        props.rows.splice(props.id-1,1);
+        props.updateRows(props.rows)
+        history.push(`/posts/`);        
     }
 
     return (
@@ -35,7 +48,7 @@ function View_Posts(props) {
                 {(props.admin)
                     ? <>
                         <button className='button button_admin' type="button" onClick={(e) => buttonLoad()} data-id={props.id}>Edit</button>
-                        <button className='button button_admin delete' type="button" onClick={(e) => buttonDelete()} data-id={props.id}>Delete</button>
+                        <button className='button button_admin delete' type="button" onClick={(e) => deleteRow()} data-id={props.id}>Delete</button>
                       </>
                     : <button className='button' type="button" onClick={(e) => buttonLoad()} data-id={props.id}>Read More</button>
                 }

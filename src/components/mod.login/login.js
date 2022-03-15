@@ -7,6 +7,7 @@ function Login(props) {
     const username = "oilsporvida_60";
 
     useEffect(() => {
+        console.log('logoutAttempt', props.logoutAttempt)
         console.log('login mounted');
         if (props.loggedIn) {
             console.log('logged in');
@@ -15,7 +16,7 @@ function Login(props) {
                 props.setRender(!props.render);
             }
         } else {
-            if (localStorage.getItem('username') === username) {
+            if (localStorage.getItem('username') === username && props.logoutAttempt) {
                 console.log('logged out');
                 localStorage.setItem('username', '');
                 props.setRender(!props.render);

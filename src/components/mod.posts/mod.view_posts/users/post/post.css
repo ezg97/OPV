@@ -97,16 +97,16 @@
     border: 0;
 
     border: 3px solid black;
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
     border-radius: 50%;
 }
 
 .back_arrow {  
     color: inherit;
-    font-size: 80px;
-    margin-top: -37px;
-    margin-left: 12px;
+    font-size: 60px;
+    margin-top: -32px;
+    margin-left: 7px;
 }
 
 .outer_circle:hover, .outer_circle:focus {
