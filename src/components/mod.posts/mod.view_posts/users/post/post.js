@@ -288,12 +288,15 @@ Some of our favorites are:
     const addRow = () => {
         console.log('add row');
         if (Number(params.post_id) === 0 && editBody.length > 0 && editTitle.length > 0) {
+            const today = new Date();
+
             let newRow = [
                 {
                     sku: props.rows.length+1, 
                     post_id: props.rows.length+1, 
                     title: editTitle, 
-                    body: editBody
+                    body: editBody,
+                    date: (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear()
                 }
             ];
             props.addRow(newRow);

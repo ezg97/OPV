@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import {Link, useHistory  } from 'react-router-dom';
 
-import View_Posts from '../view_posts/view_posts.js';
+import ViewPosts from '../view_posts/view_posts.js';
 
 import post_listing from './post_listing.css';
 
@@ -249,6 +249,15 @@ Some of our favorites are:
        window.location.href = window.location.origin + '/posts/0';
     }
 
+    const formatDate = (date) => {
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        date = date.split('/');
+
+        date = (months[ Number(date[0]) - 1 ]) + ' ' +  date[1] + ', ' + date[2];
+        console.log(date);
+        return date;
+    }
+
 
     return (
         <div className='page post_page'>
@@ -261,7 +270,17 @@ Some of our favorites are:
             {console.log("display rows", props)}
             {props.rows 
                 ? props.rows.map((row, i) => 
-                    <View_Posts ref={viewPostRef} admin={props.admin} updateRows={props.updateRows} rows={props.rows} updateRows={props.updateRows} id={i+1} title={row.title.length < 25 ? row.title.trimEnd() : (row.title.substring(0, 25).trimEnd() + '...')} date={/*row.date*/'JANUARY, 1, 2022'} paragraph={(row.body.substring(0, 150) + "...")} read={Math.ceil((row.body.split(' ').length)/250)} />
+                    <ViewPosts 
+                        ref={viewPostRef} 
+                        admin={props.admin} 
+                        updateRows={props.updateRows} 
+                        rows={props.rows} 
+                        id={i+1} 
+                        title={row.title.length < 25 ? row.title.trimEnd() : (row.title.substring(0, 25).trimEnd() + '...')} 
+                        date={formatDate(row.date)} 
+                        paragraph={(row.body.substring(0, 150) + "...")} 
+                        read={Math.ceil((row.body.split(' ').length)/250)} 
+                    />
                   )
                 : null
             }
