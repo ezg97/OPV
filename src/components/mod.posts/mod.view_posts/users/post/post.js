@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {Route, useHistory, useParams} from 'react-router-dom';
+import CKEditor from "react-ckeditor-component";
 
 
 import './post.css';
@@ -282,7 +283,23 @@ Some of our favorites are:
     }
 
     const updateBody = (e) => {
-        setEditBody(e.target.value);
+        setEditBody(e.editor.getData());
+    }
+
+    const onBlur = (evt) => {
+        console.log("onBlur event called with event info: ", evt);
+    }
+    
+    const afterPaste = (evt) => {
+        console.log("afterPaste event called with event info: ", evt);
+    }
+
+    const createMarkup = () => {
+        return {
+        __html: props.rows && params.post_id !== 0
+            ? props.rows[params.post_id-1].body 
+            : ''
+        };
     }
 
     const addRow = () => {
@@ -368,8 +385,16 @@ Some of our favorites are:
                 {(props.admin)
                     ? <>
                         <h2 className="h2_admin">Body</h2>
-                        <p class="blog_content">
-                            <textarea class="pretext textarea_admin textarea_lg" value={editBody} onChange={updateBody}></textarea>
+                            <CKEditor 
+                                activeClass="pretext textarea_admin textarea_lg" 
+                                content={editBody} 
+                                events={{
+                                    "blur": onBlur,
+                                    "afterPaste": afterPaste,
+                                    "change": updateBody
+                                }}
+                            />
+
                             {/* lists[Number(params.post_id-1) - 1].links.length > 0
                             ? lists[Number(params.post_id-1) - 1].links.map(url => 
                                 <a href={url}>{url}</a>
@@ -377,12 +402,11 @@ Some of our favorites are:
                             : null
                             */}
 
-                        </p>
                     
                       </>
                     : <p class="blog_content">
                         <pre class="pretext">
-                            {props.rows && params.post_id !== 0? props.rows[params.post_id-1].body : ''}
+                            <div dangerouslySetInnerHTML={createMarkup()} className='editor'></div>
                         </pre>
                         {/* lists[Number(params.post_id-1) - 1].links.length > 0
                         ? lists[Number(params.post_id-1) - 1].links.map(url => 
