@@ -296,28 +296,28 @@ Some of our favorites are:
 
     const createMarkup = () => {
         return {
-        __html: props.rows && params.post_id !== 0
-            ? props.rows[params.post_id-1].body 
+        __html: props.postData && params.post_id !== 0
+            ? props.postData[params.post_id-1].body 
             : ''
         };
     }
 
-    const addRow = () => {
+    const addPostData = () => {
         console.log('add row');
         if (Number(params.post_id) === 0 && editBody.length > 0 && editTitle.length > 0) {
             const today = new Date();
 
             let newRow = [
                 {
-                    sku: props.rows.length+1, 
-                    post_id: props.rows.length+1, 
+                    sku: props.postData.length+1, 
+                    post_id: props.postData.length+1, 
                     title: editTitle, 
                     body: editBody,
                     date: (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear()
                 }
             ];
-            props.addRow(newRow);
-            props.rows.push(newRow[0]);
+            props.addPostData(newRow);
+            props.postData.push(newRow[0]);
 
             // need to getRows again that way the new row is added into the global state
             // quick fix for now is reloading app that way it gets rows again
@@ -331,32 +331,32 @@ Some of our favorites are:
     const updateRow = () => {
         console.log('update row');
 
-        console.log(props.rows ? props.rows[params.post_id-1] : props);
-        props.rows[params.post_id-1].body = editBody;
-        props.rows[params.post_id-1].title = editTitle;
+        console.log(props.postData ? props.postData[params.post_id-1] : props);
+        props.postData[params.post_id-1].body = editBody;
+        props.postData[params.post_id-1].title = editTitle;
 
         console.log('after change: ',
-            props.rows[params.post_id-1]);
-        props.rows[params.post_id-1].save();
+            props.postData[params.post_id-1]);
+        props.postData[params.post_id-1].save();
         history.push(`/posts/`);        
     }
 
     const deleteRow = () => {
-        props.rows[params.post_id-1].delete();
-        props.rows.splice(params.post_id-1,1);
-        props.updateRows(props.rows)
+        props.postData[params.post_id-1].delete();
+        props.postData.splice(params.post_id-1,1);
+        props.updateRows(props.postData)
         history.push(`/posts/`);        
     }
 
     useEffect(() => {
         console.log('post mounted');
-        let condition = props.rows && Number(params.post_id) !== 0;
+        let condition = props.postData && Number(params.post_id) !== 0;
         if (condition) {
             console.log('cdt: ', condition)
-            setEditTitle(condition ? props.rows[params.post_id-1].title : '');
-            setEditBody(condition ? props.rows[params.post_id-1].body : '');
+            setEditTitle(condition ? props.postData[params.post_id-1].title : '');
+            setEditBody(condition ? props.postData[params.post_id-1].body : '');
         }
-    }, [props.rows]);
+    }, [props.postData]);
 
 
     return (
@@ -369,7 +369,7 @@ Some of our favorites are:
             {/* <img src="https://img.icons8.com/ios/452/back--v1.png"/> */}
             <div class="blog_post">
                 <div class="blog_header" >
-                    <img class="blog_image" src={props.rows ? /*props.rows[params.post_id-1].image*/ '' : ''} />
+                    <img class="blog_image" src={props.postData ? /*props.postData[params.post_id-1].image*/ '' : ''} />
                 </div>
                 
                 {(props.admin)
@@ -378,7 +378,7 @@ Some of our favorites are:
                         <textarea class="blog_title textarea_admin" value={editTitle} onChange={updateTitle}></textarea>
                       </>
                     : <h2 className="blog_title">
-                        {props.rows && params.post_id !== 0 ? props.rows[params.post_id-1].title : ''}
+                        {props.postData && params.post_id !== 0 ? props.postData[params.post_id-1].title : ''}
                       </h2>
                 }
                 
@@ -420,7 +420,7 @@ Some of our favorites are:
                 {(props.admin)
                     ? <>
                         <br></br>
-                        <button onClick={Number(params.post_id) !== 0 ? updateRow : addRow} className="button md">Submit</button>
+                        <button onClick={Number(params.post_id) !== 0 ? updateRow : addPostData} className="button md">Submit</button>
                         {Number(params.post_id) !== 0
                             ? <>
                                 <span className="space-pad-10"></span>

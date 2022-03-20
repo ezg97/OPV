@@ -241,7 +241,7 @@ Some of our favorites are:
     const history = useHistory();
     const viewPostRef = useRef();
 
-    const addRow = () => {
+    const addPostData = () => {
     //     history.push(`/posts/0`)
     // viewPostRef.current.addButtonAdmin();
            // history.push('/posts/0');
@@ -263,18 +263,18 @@ Some of our favorites are:
         <div className='page post_page'>
             {(props.admin)
                 ? <div className="add_div">
-                    <button onClick={addRow} className="add_button_admin">Add</button>
+                    <button onClick={addPostData} className="add_button_admin">Add</button>
                   </div>
                 : null
             }
-            {console.log("display rows", props)}
-            {props.rows 
-                ? props.rows.map((row, i) => 
+            {console.log("display postData", props)}
+            {props.postData 
+                ? props.postData.map((row, i) => 
                     <ViewPosts 
                         ref={viewPostRef} 
                         admin={props.admin} 
                         updateRows={props.updateRows} 
-                        rows={props.rows} 
+                        postData={props.postData} 
                         id={i+1} 
                         title={row.title.length < 25 ? row.title.trimEnd() : (row.title.substring(0, 25).trimEnd() + '...')} 
                         date={formatDate(row.date)} 

@@ -27,9 +27,9 @@ function View_Posts(props) {
     }
 
     const deleteRow = () => {
-        props.rows[props.id-1].delete();
-        props.rows.splice(props.id-1,1);
-        props.updateRows(props.rows)
+        props.postData[props.id-1].delete();
+        props.postData.splice(props.id-1,1);
+        props.updateRows(props.postData)
         history.push(`/posts/`);        
     }
 

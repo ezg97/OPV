@@ -44,6 +44,9 @@ function App() {
 
   const [initalRender, setinitialRender] = useState(false);
   const [rows, updateRows] = useState('');
+  const [postData, setPostData] = useState('');
+  const [subscriberData, setSubscriberData] = useState([]);
+
   const sheet = new Sheet();
 
 
@@ -65,6 +68,19 @@ function App() {
         console.log(results[0].image);
         if (!rows) {
           updateRows(results);
+          console.log('debug - results: ', results);
+          let newPostData = [];
+          let newSubscriberData = [];
+          results.map(obj => {
+            console.log('debug - subscriber id: ', obj.subscriber_id);
+            if (obj.post_id) {
+              newPostData.push(obj);
+            } else if (obj.subscriber_id) {
+              newSubscriberData.push(obj);
+            }
+          });
+          setPostData(newPostData);
+          setSubscriberData(newSubscriberData);
         }
         // if (!initalRender) {
         //   updateRows(results);
@@ -80,10 +96,63 @@ function App() {
     // console.log(results[0].image);
   }
 
-  const addRow = (newRow) => {
+  const addPostData = (newRow) => {
+    console.log('adding row', newRow);
     if (newRow) {
       sheet.addRows(newRow);
     }
+  }
+
+  const addSubscriberData = (newSubscriber) => {
+    console.log('adding sub', newSubscriber);
+    console.log('debug - subscriberData: ', subscriberData);
+
+    // If no subscriber exists yet
+    if (subscriberData.length === 0) {
+      console.log('default entry');
+      let insertData = [
+        {
+          sku: rows.length,
+          subscriber_id: 1,
+          email: newSubscriber
+        }
+      ];
+      sheet.addRows(insertData)
+      setSubscriberData(insertData);
+    } else {
+      console.log('readl entry');
+      let insertFlag = true;
+      subscriberData.map((obj) => {
+        if (obj.email === newSubscriber) {
+          insertFlag = false;
+        }
+        return null;
+      });
+      if (insertFlag) {
+        let insertData = 
+        {
+          sku: rows.length + 1,
+          subscriber_id: Number(subscriberData[subscriberData.length - 1].subscriber_id) + 1,
+          email: newSubscriber
+        };
+        sheet.addRows([insertData]);
+        insertData = subscriberData.push(insertData);
+        setSubscriberData(insertData);
+      }
+    }
+
+    // let condition = subscriberData.indexOf(newSubscriber);
+
+    // let string = subscriberData.join('');
+    // string = string.includes(newSubscriber);
+
+    // condition = condition === -1;
+    // console.log('string: ', string);
+    // if (!string) {
+    //   console.log('subscriberData - ',subscriberData)
+    //   subscriberData.push(newSubscriber);
+    //   setSubscriberData(subscriberData);
+    // }
   }
 
   useEffect(() => {
@@ -160,13 +229,13 @@ function App() {
                   <> */}
                 <Route exact path={['/posts','/post']} 
                 // component={PostListing}/>
-                  render={(props) => <PostListing admin={enableLogin} rows={rows} updateRows={updateRows}/>}
+                  render={(props) => <PostListing admin={enableLogin} postData={postData} updateRows={updateRows}/>}
                 />
                 
                 <Route exact path={['/admin_post']} component = {AdminPost} />
 
                 <Route path={['/posts/:post_id','/post/post_id']}
-                 render={(props) => <Post admin={enableLogin} rows={rows} updateRows={updateRows} addRow={addRow}/>}
+                 render={(props) => <Post admin={enableLogin} postData={postData} updateRows={updateRows} addPostData={addPostData}/>}
 
                 />
 
@@ -197,7 +266,7 @@ function App() {
        {/* <Route path='/' component = {} /> */}
       {/* 3 - Footer: Every Page */}
       <Route path='/' 
-      render={(props) => <Footer admin={enableLogin}/>}
+      render={(props) => <Footer admin={enableLogin} subscriberData={subscriberData} addSubscriberData={addSubscriberData}/>}
       />
     </main>
   );
