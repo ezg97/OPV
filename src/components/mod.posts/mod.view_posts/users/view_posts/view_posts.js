@@ -33,10 +33,19 @@ function View_Posts(props) {
         history.push(`/posts/`);        
     }
 
+    const createMarkup = (id) => {
+        return {
+        __html: props.postData && id !== 0
+            ? props.postData[id-1].title 
+            : ''
+        };     
+    }
+    
+
     return (
         <div className="posts">
             <div className='top-content'>
-                <h3><Link className={"post_link_"+props.id} to={`/posts/${props.id}`}>{props.title}</Link></h3>
+                <h3><Link className={"post_link_"+props.id} to={`/posts/${props.id}`} dangerouslySetInnerHTML={createMarkup(props.id)}></Link></h3>
             </div>
             <div className='middle-content'>
                 <h6>{props.date}</h6>

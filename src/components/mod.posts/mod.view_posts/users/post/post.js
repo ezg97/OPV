@@ -278,7 +278,7 @@ Some of our favorites are:
     const [editBody, setEditBody] = useState();
 
     const updateTitle = (e) => {
-        setEditTitle(e.target.value);
+        setEditTitle(e.editor.getData());
 
     }
 
@@ -294,12 +294,20 @@ Some of our favorites are:
         console.log("afterPaste event called with event info: ", evt);
     }
 
-    const createMarkup = () => {
-        return {
-        __html: props.postData && params.post_id !== 0
-            ? props.postData[params.post_id-1].body 
-            : ''
-        };
+    const createMarkup = (type) => {
+        if (type === 'title') {
+            return {
+            __html: props.postData && params.post_id !== 0
+                ? props.postData[params.post_id-1].title 
+                : ''
+            };  
+        } else if (type === 'body') {
+            return {
+            __html: props.postData && params.post_id !== 0
+                ? props.postData[params.post_id-1].body 
+                : ''
+            };     
+        }
     }
 
     const addPostData = () => {
@@ -375,10 +383,22 @@ Some of our favorites are:
                 {(props.admin)
                     ? <>
                         <h2 className="h2_admin">Title</h2>
-                        <textarea class="blog_title textarea_admin" value={editTitle} onChange={updateTitle}></textarea>
+                        <CKEditor 
+                            activeClass="blog_title textarea_admin" 
+                            content={editTitle} 
+                            events={{
+                                "blur": onBlur,
+                                "afterPaste": afterPaste,
+                                "change": updateTitle
+                            }}
+                        />
+                        {/* <textarea class="blog_title textarea_admin" value={editTitle} onChange={updateTitle}></textarea> */}
                       </>
                     : <h2 className="blog_title">
-                        {props.postData && params.post_id !== 0 ? props.postData[params.post_id-1].title : ''}
+                        <pre class="pretext">
+                            <div dangerouslySetInnerHTML={createMarkup('title')} className='editor'></div>
+                        </pre>
+                        {/* {props.postData && params.post_id !== 0 ? props.postData[params.post_id-1].title : ''} */}
                       </h2>
                 }
                 
@@ -406,7 +426,7 @@ Some of our favorites are:
                       </>
                     : <p class="blog_content">
                         <pre class="pretext">
-                            <div dangerouslySetInnerHTML={createMarkup()} className='editor'></div>
+                            <div dangerouslySetInnerHTML={createMarkup('body')} className='editor'></div>
                         </pre>
                         {/* lists[Number(params.post_id-1) - 1].links.length > 0
                         ? lists[Number(params.post_id-1) - 1].links.map(url => 
