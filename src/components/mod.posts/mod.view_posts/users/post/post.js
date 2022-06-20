@@ -275,11 +275,15 @@ Some of our favorites are:
 ];
     console.log('props: ', props);
     const [editTitle, setEditTitle] = useState('');
+    const [editImage, setImage] = useState('');
     const [editBody, setEditBody] = useState();
+
+    const updateImage = (e) => {
+        setImage(e.editor.getData());
+    }
 
     const updateTitle = (e) => {
         setEditTitle(e.editor.getData());
-
     }
 
     const updateBody = (e) => {
@@ -307,7 +311,23 @@ Some of our favorites are:
                 ? props.postData[params.post_id-1].body 
                 : ''
             };     
+        } else if (type === 'image') {
+            return {
+            __html: props.postData && params.post_id !== 0
+                ? props.postData[params.post_id-1].image 
+                : ''
+            };     
         }
+    }
+
+    const stripImageSrc = (img) => {
+        console.log('image: ', img)
+        let src = img.split(`src="`).pop();
+        console.log('first source: ', src);
+        src = src.split(`"`)[0];
+        console.log('final source: ', src);
+
+        return src;
     }
 
     const addPostData = () => {
@@ -321,6 +341,8 @@ Some of our favorites are:
                     post_id: props.postData.length+1, 
                     title: editTitle, 
                     body: editBody,
+                    image: editImage,
+                    image_src: stripImageSrc(editImage),
                     date: (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear()
                 }
             ];
@@ -331,17 +353,17 @@ Some of our favorites are:
             // quick fix for now is reloading app that way it gets rows again
             window.location.href = window.location.origin + '/posts'
             // history.push(`/posts/`); 
-        }
-          
-             
+        }        
     }
 
     const updateRow = () => {
+        stripImageSrc(editImage);
         console.log('update row');
-
         console.log(props.postData ? props.postData[params.post_id-1] : props);
         props.postData[params.post_id-1].body = editBody;
         props.postData[params.post_id-1].title = editTitle;
+        props.postData[params.post_id-1].image = editImage;
+        props.postData[params.post_id-1].image_src = stripImageSrc(editImage);
 
         console.log('after change: ',
             props.postData[params.post_id-1]);
@@ -363,9 +385,12 @@ Some of our favorites are:
             console.log('cdt: ', condition)
             setEditTitle(condition ? props.postData[params.post_id-1].title : '');
             setEditBody(condition ? props.postData[params.post_id-1].body : '');
+            setImage(condition ? props.postData[params.post_id-1].image : '');
         }
     }, [props.postData]);
 
+    // const Image = props.postData[params.post_id-1].image;
+    console.log('Title: ', props.postData[params.post_id-1]? props.postData[params.post_id-1].title : '');
 
     return (
         <div className='page'>
@@ -376,10 +401,25 @@ Some of our favorites are:
             </div>
             {/* <img src="https://img.icons8.com/ios/452/back--v1.png"/> */}
             <div class="blog_post">
-                <div class="blog_header" >
-                    <img class="blog_image" src={props.postData ? /*props.postData[params.post_id-1].image*/ '' : ''} />
-                </div>
                 
+                {(props.admin)
+                    ? <>
+                        <h2 className="h2_admin">Thumbnail (paste image here)</h2>
+                        <CKEditor 
+                            activeClass="blog_title textarea_admin" 
+                            content={editImage} 
+                            events={{
+                                "blur": onBlur,
+                                "afterPaste": afterPaste,
+                                "change": updateImage
+                            }}
+                        />
+                      </>
+                    : <div class="blog_header" >
+                        <img class="blog_image" src={props.postData ? props.postData[params.post_id-1].image_src : ''} />
+                    </div>
+                } 
+
                 {(props.admin)
                     ? <>
                         <h2 className="h2_admin">Title</h2>

@@ -49,6 +49,14 @@ function App() {
 
   const sheet = new Sheet();
 
+  const sortPostByDate = (newPostData) => {
+    console.log('sorting', newPostData, 'rows', rows);
+
+    setPostData(newPostData.sort((a,b) => {
+      return new Date(b.date) - new Date(a.date);
+    }));
+  }
+
 
   const getRows = () => {
     console.log('get called');
@@ -81,6 +89,7 @@ function App() {
           });
           setPostData(newPostData);
           setSubscriberData(newSubscriberData);
+          sortPostByDate(newPostData);
         }
         // if (!initalRender) {
         //   updateRows(results);

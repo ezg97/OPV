@@ -3,7 +3,8 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 /*module.exports = */
 class Sheet {
     constructor() {
-        this.doc = new GoogleSpreadsheet('1g8I0BuIQagwueD8kyQDlmO8doRbVTMOkXAuudVW8FYc');
+        // prod: 1g8I0BuIQagwueD8kyQDlmO8doRbVTMOkXAuudVW8FYc
+        this.doc = new GoogleSpreadsheet('1IiNjEnpWiFkY7FEGCKUcCrgWn-s4tmiZE8Sh0rwAbmk');
 
     }
 

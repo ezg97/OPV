@@ -3,12 +3,14 @@ import {Link, useHistory  } from 'react-router-dom';
 
 import './view_posts.css';
 
-import Post from '../post/post.js';
+import '../post/post.js';
 
 
 function View_Posts(props) {
     const history = useHistory();
-
+    const titleCharLimit = 55;
+    const bodyCharLimit = 100;
+    
     function buttonLoad () {
         history.push(`/posts/`+props.id);        
     }
@@ -33,25 +35,51 @@ function View_Posts(props) {
         history.push(`/posts/`);        
     }
 
-    const createMarkup = (id) => {
-        return {
-        __html: props.postData && id !== 0
-            ? props.postData[id-1].title 
-            : ''
-        };     
+    const charLimitText = (text, limit) => {
+        return text.length < limit ? text.trimEnd() : (text.substring(0, limit).trimEnd() + '...');
+    }
+
+    const createMarkup = (type, id) => {
+        if (type === 'title') {
+            return {
+                __html: props.postData && id !== 0
+                    ? charLimitText(props.postData[id-1].title, titleCharLimit)
+                    : ''
+            }; 
+        } else if (type === 'body') {
+            return {
+                __html: props.postData && id !== 0
+                    ? charLimitText(props.postData[id-1].body, bodyCharLimit)
+                    : ''
+            }; 
+        }
+            
     }
     
 
     return (
         <div className="posts">
+                {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                <img className="post_img" src={props.postData[props.id-1].image_src ? props.postData[props.id-1].image_src : "https://blog.planttherapy.com/blog/wp-content/uploads/2022/02/PlantTherapy-Lucky2022-Blog-Lucky_Luckier_Luckiest_Essential_Oil_Blends-1038x576.jpg"}/>
+            <div className="post_info">
+                <div>
+                    <span class="glyphicon glyphicon-calendar"></span>
+                    <h6>{props.date}</h6>
+                </div>
+                <div className="time_read">
+                    <span class="glyphicon glyphicon-time"></span>
+                    <h6>{props.read} min read</h6>
+                </div>
+            </div>
+            
             <div className='top-content'>
-                <h3><Link className={"post_link_"+props.id} to={`/posts/${props.id}`} dangerouslySetInnerHTML={createMarkup(props.id)}></Link></h3>
+                <h4><Link className={"post_link_"+props.id} to={`/posts/${props.id}`} dangerouslySetInnerHTML={createMarkup('title', props.id)}></Link></h4>
             </div>
-            <div className='middle-content'>
-                <h6>{props.date}</h6>
-                <span></span>
-                <p>{props.read} min read</p>
+           
+            <div className='content'>
+                <p  dangerouslySetInnerHTML={createMarkup('body', props.id)}></p>
             </div>
+
             <div className={(props.admin) ? 'bottom-content bottom-content_admin' : 'bottom-content'}>
                 {console.log(props)}
                 {(props.admin)
@@ -59,7 +87,7 @@ function View_Posts(props) {
                         <button className='button button_admin' type="button" onClick={(e) => buttonLoad()} data-id={props.id}>Edit</button>
                         <button className='button button_admin delete' type="button" onClick={(e) => deleteRow()} data-id={props.id}>Delete</button>
                       </>
-                    : <button className='button' type="button" onClick={(e) => buttonLoad()} data-id={props.id}>Read More</button>
+                    : <a className="read_more" onClick={(e) => buttonLoad()} data-id={props.id}>Read More</a>
                 }
             </div>
         </div>
