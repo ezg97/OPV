@@ -4,7 +4,8 @@ const { GoogleSpreadsheet } = require('google-spreadsheet');
 class Sheet {
     constructor() {
         // prod: 1g8I0BuIQagwueD8kyQDlmO8doRbVTMOkXAuudVW8FYc
-        this.doc = new GoogleSpreadsheet('1IiNjEnpWiFkY7FEGCKUcCrgWn-s4tmiZE8Sh0rwAbmk');
+        // TEST: 1IiNjEnpWiFkY7FEGCKUcCrgWn-s4tmiZE8Sh0rwAbmk
+        this.doc = new GoogleSpreadsheet('1g8I0BuIQagwueD8kyQDlmO8doRbVTMOkXAuudVW8FYc');
 
     }
 
